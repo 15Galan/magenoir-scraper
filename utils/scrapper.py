@@ -115,7 +115,7 @@ def get_data(spell_url):
             element = item.find('img', class_='font-pictogram')
             m_type = element['alt'].replace('-icon', '').capitalize()
 
-            spell.manas[m_type] = int(m_quantity)
+            spell.manas[m_type] = m_quantity
 
     # Extract the spell's components
     components = html.find('td', class_='row-title', text='Components needed : ')
@@ -129,7 +129,7 @@ def get_data(spell_url):
                 c_quantity = item.split(' ')[0].strip()
                 c_type = item.split(' ')[1].strip().capitalize()
 
-                spell.components[c_type] = int(c_quantity)
+                spell.components[c_type] = c_quantity
 
     # Extract the spell's effect (card description)
     effect = html.find('td', class_='row-title', text='Effect : ')
