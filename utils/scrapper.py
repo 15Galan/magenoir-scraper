@@ -5,6 +5,7 @@ from requests import RequestException
 from termcolor import colored
 from urllib.parse import urlparse
 from utils.magenoir import Spell
+from utils.progressbar import ProgressBar
 
 
 global main_page    # The URL's domain
@@ -64,8 +65,13 @@ def get_spells_info(spells_urls):
     """
     spells_info = []
 
+    # Create a progress bar
+    progress = ProgressBar(len(spells_urls))
+
     for spell_url in spells_urls:
-        spells_info.append(get_data(spell_url))
+        spell = get_data(spell_url)
+        spells_info.append(spell)
+        progress.update(1, spell.name.capitalize())
 
     return spells_info
 
