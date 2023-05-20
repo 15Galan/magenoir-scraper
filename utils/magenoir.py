@@ -1,7 +1,7 @@
 import io
 
 
-class SPELL:
+class Spell:
     """
     This class represents a Mage Noir's card, also known as a 'spell'.
     """

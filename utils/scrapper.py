@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup as bs
 from requests import RequestException
 from termcolor import colored
 from urllib.parse import urlparse
-from utils.magenoir import SPELL
+from utils.magenoir import Spell
 
 
 global main_page    # The URL's domain
@@ -78,7 +78,7 @@ def get_data(spell_url):
     :return: an instance of the class SPELL.
     """
     # Create an instance of the class SPELL
-    spell = SPELL()
+    spell = Spell()
 
     # Make a request to the spell's URL and get the HTML content
     html = get_html(spell_url)
