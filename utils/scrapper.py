@@ -28,6 +28,26 @@ def get_html(page_url):
     return html
 
 
+def get_spells_urls(database_url):
+    """
+    Extracts the spells' URLs from the database page.
+
+    :param database_url: the database's page URL.
+    :return: a list of spells' URLs.
+    """
+    # Make a request to the database's URL and get the HTML content
+    html = get_html(database_url)
+
+    spells_urls = []
+
+    for element in ['vegetal', 'fire', 'water', 'air', 'mineral', 'arcane']:
+        for item in html.find_all('div', class_=f'Portfolio-box card {element}'):
+            for i in item.find_all('a'):
+                spells_urls.append(i['href'])
+
+    return spells_urls
+
+
 def get_data(spell_url):
     """
     Extracts the data from a spell's page.
