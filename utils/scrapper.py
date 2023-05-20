@@ -55,6 +55,21 @@ def get_spells_urls(database_url):
     return spells_urls
 
 
+def get_spells_info(spells_urls):
+    """
+    Extracts the spells' data from the spells' URLs.
+
+    :param spells_urls: a list of spells' URLs.
+    :return: a list of spells' data.
+    """
+    spells_info = []
+
+    for spell_url in spells_urls:
+        spells_info.append(get_data(spell_url))
+
+    return spells_info
+
+
 def get_data(spell_url):
     """
     Extracts the data from a spell's page.
