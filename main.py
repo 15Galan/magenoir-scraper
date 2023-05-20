@@ -5,7 +5,7 @@ database = 'https://magenoir.com/collection.html'
 
 spells_urls = scrapper.get_spells_urls(database)
 
-print(f"Found {len(spells_urls)} spells in the database.\n")
+print(f"Found {len(spells_urls)} spells in the database. Downloading...")
 
 spells = scrapper.get_spells_info(spells_urls)
 

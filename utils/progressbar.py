@@ -27,7 +27,7 @@ class ProgressBar:
         if self.progress > self.size:
             self.progress = self.size
 
-        print(self, '\t' + spell, end='')
+        print(self, '\t' + spell, end='' if self.progress < self.size else '\n')
 
     def __str__(self):
         """
