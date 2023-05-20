@@ -3,7 +3,11 @@ import requests
 from bs4 import BeautifulSoup as bs
 from requests import RequestException
 from termcolor import colored
+from urllib.parse import urlparse
 from utils.magenoir import SPELL
+
+
+global main_page    # The URL's domain
 
 
 def get_html(page_url):
@@ -35,6 +39,9 @@ def get_spells_urls(database_url):
     :param database_url: the database's page URL.
     :return: a list of spells' URLs.
     """
+    # Define the database's URL domain
+    main_page = "https://www." + urlparse(database_url).netloc
+
     # Make a request to the database's URL and get the HTML content
     html = get_html(database_url)
 
@@ -43,7 +50,7 @@ def get_spells_urls(database_url):
     for element in ['vegetal', 'fire', 'water', 'air', 'mineral', 'arcane']:
         for item in html.find_all('div', class_=f'Portfolio-box card {element}'):
             for i in item.find_all('a'):
-                spells_urls.append(i['href'])
+                spells_urls.append(main_page + "/" + i['href'])
 
     return spells_urls
 
