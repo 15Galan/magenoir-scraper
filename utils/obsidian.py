@@ -36,9 +36,18 @@ def add_spell(spell, vault_path):
     :param spell: the spell to add.
     :param vault_path: the path to the vault.
     """
+    # Note name
     note_name = spell.name + '.md'
-    note_path = os.path.join(vault_path, note_name)
 
+    # Note path
+    note_path = os.path.join(vault_path, set_emoji(spell) + spell.element)
+
+    if not os.path.exists(note_path):
+        os.makedirs(note_path)
+
+    note_path = os.path.join(note_path, note_name)
+
+    # Create the note
     with open(note_path, 'w') as f:
         # Obsidian note metadata
         f.write('---\n')
@@ -51,4 +60,29 @@ def add_spell(spell, vault_path):
         # Obsidian note content
         f.write('\n' + spell.effect.strip('\"') + '\n')
 
+        # Close the file
         f.close()
+
+
+def set_emoji(spell):
+    """
+    Set the emoji for a spell.
+
+    :param spell: the spell to set the emoji for.
+
+    :return: the emoji for the spell.
+    """
+    if spell.element == 'Vegetal':
+        return '🟢 '
+    elif spell.element == 'Fire':
+        return '🔴 '
+    elif spell.element == 'Water':
+        return '🔵 '
+    elif spell.element == 'Air':
+        return '⚪ '
+    elif spell.element == 'Mineral':
+        return '🟤 '
+    elif spell.element == 'Arcane':
+        return '🟣 '
+    else:
+        return '❌ '
