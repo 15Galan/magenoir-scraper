@@ -49,6 +49,6 @@ def add_spell(spell, vault_path):
         f.write('---\n')
 
         # Obsidian note content
-        f.write('\n' + spell.effect.strip('\"') + '\n\n')
+        f.write('\n' + spell.effect.strip('\"') + '\n')
 
         f.close()
