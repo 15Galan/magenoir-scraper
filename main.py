@@ -7,13 +7,11 @@ from utils import obsidian
 database = 'https://magenoir.com/collection.html'
 
 spells_urls = scrapper.get_spells_urls(database)
-
 print(f"Found {len(spells_urls)} spells in the database. Downloading...")
 
 spells = scrapper.get_spells_info(spells_urls)
+print(f"\tDownloaded {len(spells)} spells from the database.\n")
 
-for spell in spells:
-    print(spell)
 
 # Save the spells in an Obsidian vault
 actual_path = os.path.dirname(os.path.abspath(__file__))
