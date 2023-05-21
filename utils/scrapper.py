@@ -92,17 +92,17 @@ def get_data(spell_url):
     # Extract the spell's name
     name = html.find('td', class_='row-title', text='Name : ')
     if name:
-        spell.name = name.find_next_sibling('td').text.strip()
+        spell.name = name.find_next_sibling('td').text.strip().capitalize()
 
     # Extract the spell's element
     element = html.find('td', class_='row-title', text='Element : ')
     if element:
-        spell.element = element.find_next_sibling('td').text.strip()
+        spell.element = element.find_next_sibling('td').text.strip().capitalize()
 
     # Extract the spell's type
     stype = html.find('td', class_='row-title', text='Type : ')
     if stype:
-        spell.type = stype.find_next_sibling('td').text.strip()
+        spell.type = stype.find_next_sibling('td').text.strip().capitalize()
 
     # Extract the spell's mana cost
     manas = html.find('td', class_='row-title', text='Mana cost : ')
