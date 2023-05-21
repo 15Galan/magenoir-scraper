@@ -134,8 +134,28 @@ def get_data(spell_url):
     # Extract the spell's effect (card description)
     effect = html.find('td', class_='row-title', text='Effect : ')
     if effect:
-        text = effect.find_next_sibling('td').text.strip()
-        text = text.replace('\t', '').replace('\n\n', '\n')
-        spell.effect = "\"" + text + "\""
+        spell.effect = html2markdown(str(effect.find_next_sibling('td')))
 
     return spell
+
+
+def html2markdown(html_text):
+    """
+    Converts the HTML code to Markdown text.
+
+    :param html_text: the HTML code.
+
+    :return: the Markdown text.
+    """
+    # Replace the HTML tags with Markdown tags
+    md_text = html_text.replace('<p>', '').replace('</p>', '')
+    md_text = md_text.replace('<i>', '*').replace('</i>', '*')
+    md_text = md_text.replace('<br/>', '\n')
+
+    # Delete the HTML tags without useful information
+    md_text = md_text.replace('<td>', '').replace('</td>', '')
+
+    # Clean the text
+    md_text = md_text.replace('\t', '').replace('\n\n', '\n').strip()
+
+    return md_text
