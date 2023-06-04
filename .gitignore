@@ -1,5 +1,12 @@
 # PyCharm #
 .idea
 
+# Python #
+**/__pycache__/
+
 # HTML examples #
 *.html
+
+# Vault generated #
+Mage Noir/
+
